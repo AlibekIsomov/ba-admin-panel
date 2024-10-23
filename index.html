@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Bolalar akademiyasi</title>
+    <!-- AdminLTE 3 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="js/auth.js"></script>
+
+    <!-- Toastr CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" role="button">
+                        <i class="fas fa-user"></i> Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Sidebar -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="#" class="brand-link">
+                <span class="brand-text font-weight-light">Bolalar akademiyasi</span>
+            </a>
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Ro'yxat</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <h1>Ro'yxatlar</h1>
+                </div>
+            </section>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Mijozlar ro'yxati</h3>                                
+                            <div class="col-md-4" style="height:min-content;"></div>
+                                    <button  style="margin-left: 129.5vh;"
+                                    id="addClientButton" class="btn btn-primary">Klient qo'shish</button>
+                                </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                                </div>
+                                <!-- <div class="col-md-4">
+                                    <select id="sortSelect" class="form-control">
+                                        <option value="name:asc">Sort by Name (A-Z)</option>
+                                        <option value="name:desc">Sort by Name (Z-A)</option>
+                                        <option value="age:asc">Sort by Age (Youngest First)</option>
+                                        <option value="age:desc">Sort by Age (Oldest First)</option>
+                                        <option value="CreatedAt:desc" selected>Sort by Date (Newest First)</option>
+                                        <option value="CreatedAt:asc">Sort by Date (Oldest First)</option>
+                                    </select>
+                                </div> -->
+                                <div class="col-md-2">
+                                    <button id="sortButton" class="btn btn-primary">Saralash</button>
+                                </div>
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <select id="statusSortSelect" class="form-control">
+                                        <option value="">Status bilan saralash</option>
+                                        <option value="active">Aktiv</option>
+                                        <option value="inactive">Disaktive</option>
+                                        <option value="pending">Kutishda</option>
+                                        <option value="agree">Qabul qilingan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Ismi</th>
+                                        <th>Telefon raqami</th>
+                                        <th>Yoshi</th>
+                                        <th>Status <button id="sortStatusButton" class="btn btn-link p-0"><i class="fas fa-sort"></i></button></th>
+                                        <th>Izoh</th>
+                                        <th>Turi</th>
+                                        <th>Vaqti</th>
+                                        <th>Amallar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clientsTableBody">
+                                    <!-- Table rows will be dynamically added here -->
+                                </tbody>
+                            </table>
+                            <div id="pagination" class="mt-3 d-flex justify-content-center align-items-center">
+                                <!-- Pagination buttons will be dynamically added here -->
+                            </div>
+                            <style>
+                                #pagination .btn-primary {
+                                    color: #fff;
+                                    background-color: #007bff;
+                                    border-color: #007bff;
+                                }
+                                #pagination .btn-outline-primary:hover {
+                                    color: #fff;
+                                    background-color: #007bff;
+                                    border-color: #007bff;
+                                }
+                                #pagination .btn {
+                                    margin: 0 2px;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-inline">
+                Admin Panel
+            </div>
+            <strong>Copyright &copy; 2023 Bolalar akademiyasi</strong> All rights reserved.
+        </footer>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE 3 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <!-- Bootbox library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+    <!-- Your custom JavaScript -->
+    <script src="js/page.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+.sidebar-mini.sidebar-collapse .main-sidebar {
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out !important;
+}
+.sidebar-mini.sidebar-collapse .content-wrapper {
+    transition: margin-left 0.3s ease-in-out !important;
+}
+.main-sidebar {
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out !important;
+}
+.content-wrapper {
+    transition: margin-left 0.3s ease-in-out !important;
+}
+
+/* Prevent sidebar from opening on hover when collapsed */
+.sidebar-mini.sidebar-collapse .main-sidebar:hover {
+    width: 4.6rem !important;
+}
+.sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link p,
+.sidebar-mini.sidebar-collapse .main-sidebar:hover .brand-text,
+.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info {
+    margin-left: -10px;
+    visibility: hidden;
+}
+
+/* Prevent navbar details from opening on hover */
+.main-header.navbar {
+    padding: 0 1rem;
+}
+.main-header.navbar .nav-item:hover .nav-link {
+    background-color: transparent !important;
+}
+.main-header.navbar .nav-item .nav-link {
+    padding: 0.5rem 1rem;
+}
+.main-header.navbar .nav-item .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
