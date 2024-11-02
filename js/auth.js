@@ -13,7 +13,7 @@ function handleLogin(event) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('http://localhost:8081/auth/login', {
+    fetch('http://185.250.44.239:8081/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
