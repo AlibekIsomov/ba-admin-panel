@@ -79,7 +79,7 @@ function handleSortByStatus() {
 }
 
 function fetchClientsData(page = currentPage, searchTerm = currentSearchTerm, sortBy = currentSortBy, statusFilter = currentStatusFilter) {
-    const url = new URL('/api/clients');
+    const url = new URL('https://api.bolalar-akademiyasi.uz/api/clients');
     url.searchParams.append('page', page);
     url.searchParams.append('limit', itemsPerPage);
     url.searchParams.append('sort', sortBy);
@@ -227,7 +227,7 @@ function addClient() {
                     };
 
                     // Send the new client data to the server
-                    authenticatedFetch('/api/clients', {
+                    authenticatedFetch('https://api.bolalar-akademiyasi.uz/api/clients', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -254,7 +254,7 @@ function addClient() {
 
 function editClient(id) {
     // Fetch the client data
-    authenticatedFetch(`/api/clients/${id}`)
+    authenticatedFetch(`https://api.bolalar-akademiyasi.uz/api/clients/${id}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch client data');
@@ -325,7 +325,7 @@ function editClient(id) {
                             };
 
                             // Send the updated data to the server
-                            authenticatedFetch(`/api/clients/${id}`, {
+                            authenticatedFetch(`https://api.bolalar-akademiyasi.uz/api/clients/${id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -370,7 +370,7 @@ function deleteClient(id) {
         },
         callback: function (result) {
             if (result) {
-                authenticatedFetch(`/api/clients/${id}`, {
+                authenticatedFetch(`https://api.bolalar-akademiyasi.uz/api/clients/${id}`, {
                     method: 'DELETE'
                 })
                 .then(response => response.json())

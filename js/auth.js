@@ -13,7 +13,7 @@ function handleLogin(event) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('/api/auth/login', {
+    fetch('https://api.bolalar-akademiyasi.uz/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
